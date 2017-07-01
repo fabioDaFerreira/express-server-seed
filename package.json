@@ -4,15 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cover":"istanbul cover -x spec/**/*.spec.js node_modules/mocha/bin/_mocha  -- spec/**/*.spec.js -R spec src/**/*.js"
-    , "test": "npm run test:single -- --watch"
-    , "test:single": "mocha ./spec/**/*.spec.js"
+    "cover": "istanbul cover -x spec/**/*.spec.js node_modules/mocha/bin/_mocha  -- spec/**/*.spec.js -R spec src/**/*.js",
+    "test": "npm run test:single -- --watch",
+    "test:single": "mocha ./spec/**/*.spec.js --compiles js:babel-register"
   },
   "author": "martinhoferreira10@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
     "chai": "^4.0.2",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2"
+  },
+  "babel":{
+    "presets":["es2015"]
   }
 }
