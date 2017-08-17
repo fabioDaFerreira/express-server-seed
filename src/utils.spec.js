@@ -7,6 +7,11 @@ describe('Utils',function(){
         expect(message).to.be.equal('Hello fabioDaFerreira!');  
     });
 
+    it('talk should return "message"',function(){
+        var message = utils.talk('Fábio', 'How are you?');
+        expect(message).to.be.equal('Fábio says: How are you?');
+    });
+
     it('bye should return "Bye <name>!"',function(){
         var message=utils.bye('fabioDaFerreira');
         expect(message).to.be.equal(`Bye fabioDaFerreira!`);

@@ -1,12 +1,12 @@
 {
-  "name": "open-source",
+  "name": "open-source-seed",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cover": "istanbul cover -x spec/**/*.spec.js node_modules/mocha/bin/_mocha  -- spec/**/*.spec.js -R spec src/**/*.js",
+    "cover": "istanbul cover -x spec/**/*.spec.js node_modules/mocha/bin/_mocha  --  -R spec src/**/*.js",
     "test": "npm run test:single -- --watch",
-    "test:single": "mocha ./spec/**/*.spec.js --compiles js:babel-register"
+    "test:single": "mocha ./src/**/*.spec.js --compiles js:babel-register"
   },
   "author": "martinhoferreira10@gmail.com",
   "license": "ISC",
@@ -18,7 +18,9 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2"
   },
-  "babel":{
-    "presets":["es2015"]
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
