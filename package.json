@@ -1,23 +1,24 @@
 {
-  "name": "open-source-seed",
+  "name": "express-server-seed",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "check-coverage":"istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
-    "test": "mocha ./src/**/*.test.js --compiles js:babel-register --watch",
-    "test:single": "istanbul cover -x src/**/*.test.js node_modules/mocha/bin/_mocha  --  -R spec src/**/*.js"
+    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "test": "mocha ./server/**/*.test.js --compiles js:babel-register --watch",
+    "test:single": "istanbul cover -x src/**/*.test.js node_modules/mocha/bin/_mocha  --  -R spec src/**/*.js",
+    "start": "node server"
   },
   "author": "martinhoferreira10@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.24.1",
-    "chai": "^4.0.2",
-    "ghooks": "^2.0.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.4.2"
+    "babel-cli": "6.24.1",
+    "babel-preset-es2015": "6.24.1",
+    "babel-register": "6.24.1",
+    "chai": "4.0.2",
+    "ghooks": "2.0.0",
+    "istanbul": "0.4.5",
+    "mocha": "3.4.2"
   },
   "babel": {
     "presets": [
@@ -26,7 +27,19 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit":"npm run test:single && npm run check-coverage"
+      "pre-commit": "npm run test:single && npm run check-coverage"
     }
+  },
+  "dependencies": {
+    "async": "2.5.0",
+    "body-parser": "1.17.2",
+    "compression": "1.7.0",
+    "connect-livereload": "0.6.0",
+    "cookie-parser": "1.4.3",
+    "errorhandler": "1.5.0",
+    "express": "4.15.4",
+    "method-override": "2.3.9",
+    "mongoose": "4.11.7",
+    "morgan": "1.8.2"
   }
 }
