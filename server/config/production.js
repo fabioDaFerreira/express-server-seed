@@ -5,10 +5,9 @@ import methodOverride from 'method-override';
 import morgan from 'morgan';
 import errorHandler from 'errorhandler';
 import mongoose from 'mongoose';
-import mongostring from '../../secrets/mongolabstring';
 
 module.exports = {
-    development: true,
+    development:false,
     set: {
         'view engine': 'html',
         port: 8000
@@ -23,9 +22,6 @@ module.exports = {
         , errorHandler
     ],
     dbs:[
-        {
-            connect:cb=>mongoose.connect(mongostring,cb)
-        }
     ]
 };
 
