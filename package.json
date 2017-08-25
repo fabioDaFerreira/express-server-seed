@@ -7,7 +7,8 @@
     "report": "nyc report",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "test": "mocha  --compilers js:babel-core/register --watch ./server/**/*.test.js ",
-    "test:single": "nyc --require babel-core/register --reporter=lcov --reporter=text-lcov -x server/**/*.test.js node_modules/mocha/bin/_mocha  -R spec server/**/*.js",
+    "cover": "nyc --require babel-core/register --reporter=lcov --reporter=text-lcov node_modules/mocha/bin/_mocha -x server/**/*.test.js  -R spec server/**/*.js --watch",
+    "test:single": "nyc --require babel-core/register --reporter=lcov --reporter=text-lcov  node_modules/mocha/bin/_mocha -x server/**/*.test.js  -R spec server/**/*.js",
     "start": "nodemon server"
   },
   "author": "martinhoferreira10@gmail.com",
@@ -41,8 +42,11 @@
     "cookie-parser": "1.4.3",
     "errorhandler": "1.5.0",
     "express": "4.15.4",
+    "jsonwebtoken": "7.4.3",
     "method-override": "2.3.9",
     "mongoose": "4.11.7",
-    "morgan": "1.8.2"
+    "morgan": "1.8.2",
+    "passport": "0.4.0",
+    "passport-google-oauth20": "1.0.0"
   }
 }
