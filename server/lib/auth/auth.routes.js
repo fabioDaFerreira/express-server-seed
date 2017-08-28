@@ -2,6 +2,7 @@ import googleAuthenticate from './google/authenticate';
 import setTokenCookie from './jwt/setTokenCookie';
 import signToken from './jwt/signToken';
 
+
 module.exports = (config) => {
     require('./google/passport')({
         clientID: config.clientID,
