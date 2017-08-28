@@ -5,7 +5,7 @@ import configFactory from './index'
 describe('Config', function () {
     it('should return default configuration', function () {
         const config = configFactory();
-        config.dbs[0].connect(() => { });
+        config.dbs[0].connect((err,con) => { console.log(err||con) });
         for (var i = 0; i < config.middlewares.length; i++) {
             config.middlewares[i]();
         }

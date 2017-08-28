@@ -1,23 +1,30 @@
-import helloWorldRoutes from './hello-world/hello-world.routes';
+import textsModel from './texts/texts.model';
 import authRoutes from './auth/auth.routes';
+import apiMongooseRoutes from './api-mongoose/api-mongoose.routes';
+import { Router } from 'express';
 
 module.exports = (app, config) => {
 
-    const setRoute = baseUrl => {
-        return (route) => {
-            var args = [baseUrl + route.url];
+    const addRouter = (baseUrl, routes) => {
+        var router = Router();
+        var addRoute = (route) => {
+            var args = [route.url];
             if (route.middlewares) {
                 route.middlewares.forEach(middleware => args.push(middleware));
             }
-            if(route.handler){
+            if (route.handler) {
                 args.push(route.handler);
             }
-            app[route.method.toLowerCase()](...args);
+            router[route.method.toLowerCase()](...args);
         };
+
+        routes.forEach(addRoute);
+
+        app.use(baseUrl, router);
     }
 
 
-    helloWorldRoutes().forEach(setRoute('/hello-world'));
-    authRoutes(config.auth).forEach(setRoute('/auth'));
+    addRouter('/auth', authRoutes(config.auth));
+    addRouter('/texts',apiMongooseRoutes(textsModel));
 
 };
