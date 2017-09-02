@@ -1,7 +1,6 @@
 var expressJwt = require('express-jwt');
 
 module.exports = function (secretSession) {
-    console.log(secretSession);
     var validateJwt = expressJwt({ secret: secretSession });
 
     return function (req, res, next) {
