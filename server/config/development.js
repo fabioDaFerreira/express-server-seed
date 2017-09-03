@@ -8,6 +8,11 @@ import mongoose from 'mongoose';
 import mongostring from '../../secrets/mongolabstring';
 import cors from './middlewares/cors';
 import googleAuthentication from './googleAuthentication';
+import session from 'express-session';
+import connectMongo from 'connect-mongo';
+
+const MongoStore = connectMongo(session);
+const secretSession = 'fabioDaFerreira';
 
 module.exports = {
     development: true,
@@ -24,6 +29,14 @@ module.exports = {
         , () => morgan(':status :method :url :remote-addr :remote-user [:date[clf]] :res[content-length] ":referrer" :response-time ms')
         , () => cors
         , errorHandler
+        , () => session({
+            secret: secretSession
+            , saveUninitialized: true
+            , resave: false
+            , store: new MongoStore({
+                mongooseConnection: mongoose.connection
+            })
+        })
     ],
     dbs: [
         {
@@ -33,10 +46,10 @@ module.exports = {
     auth: {
         clientID: '209080652014-rkieb9e2p7lssr6r6t0dc4marl240cfv.apps.googleusercontent.com',
         clientSecret: 'j0dQyxbewXxFkqO9begyDkYA',
-        sessionSecret: 'fabioDaFerreira',
+        sessionSecret: secretSession,
         callbackURL: 'http://localhost:8000/auth/google/callback',
-        redirectUrl: 'http://localhost:3000',
-        failureRedirect: 'http://localhost:3000/not-authorized',
+        redirectUrl: 'http://localhost:4200/backoffice',
+        failureRedirect: 'http://localhost:4200',
         callback: googleAuthentication(['martinhoferreira10@gmail.com'])
     }
 };

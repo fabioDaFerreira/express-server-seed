@@ -5,12 +5,15 @@ import cors from './cors';
 describe('Cors', function () {
     it('set two heades', function () {
         const resStub = {
-            header: () => { }
+            header: () => { },
+            setHeader: () => { },
+            end:()=>{}
         }
-        var headersSpy = spy(resStub, 'header');
+        var headersSpy = spy(resStub, 'setHeader');
 
-        cors(null,resStub,()=>{});
+        cors(null, resStub, () => { });
+        cors({ method: "OPTIONS", headers: { origin: '*' } }, resStub, () => { });
 
-        expect(headersSpy.calledTwice).to.be.equal(true);
+        expect(headersSpy.called).to.be.equal(true);
     });
 });

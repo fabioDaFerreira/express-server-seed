@@ -7,11 +7,11 @@ module.exports = function (secretSession) {
         if (req.cookies && req.cookies.token) {
             req.headers.authorization = 'Bearer ' + req.cookies.token;
         }
-        else {
+        
+        if (!req.headers || !req.headers.authorization) {
             return res.status(401).send('Unauthorized');
         }
-
-
+        
         validateJwt(req, res, next);
     };
 
